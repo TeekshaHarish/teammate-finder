@@ -7,6 +7,7 @@ const passportLocalMongoose = require("passport-local-mongoose"); //done
 const ejsMate = require("ejs-mate"); //done
 const LocalStrategy = require("passport-local");
 const path = require("path");
+const userSchema=require('./models/users')
 
 
 const app = express();
@@ -23,15 +24,15 @@ useUnifiedTopology: true;
 
 // connecting database
 
-// mongoose.connect(
-//     "mongodb+srv://siddharthgoel94:sidd2105@cluster0.prx2rzr.mongodb.net/?retryWrites=true&w=majority",
-//     { useNewUrlParser: true, useUnifiedTopology: true }
-//   );
-//   const db = mongoose.connection;
-//   db.on("error", console.error.bind(console, "connectioon error:"));
-//   db.once("open", () => {
-//     console.log("Database connected");
-//   });
+mongoose.connect(
+    "mongodb+srv://siddharthgoel2105:sidd2105@cluster0.jmer3iz.mongodb.net/?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  );
+  const db = mongoose.connection;
+  db.on("error", console.error.bind(console, "connectioon error:"));
+  db.once("open", () => {
+    console.log("Database connected");
+  });
 
   app.listen(3000, function () {
     console.log("Server started on port 3000");
