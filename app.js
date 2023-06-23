@@ -7,11 +7,26 @@ const passportLocalMongoose = require("passport-local-mongoose"); //done
 const ejsMate = require("ejs-mate"); //done
 const LocalStrategy = require("passport-local");
 const path = require("path");
-const userSchema=require('./models/users')
+const UserSchema=require('./models/users')
+const session = require("express-session"); //done
 
 
 const app = express();
+app.use(
+  session({
+    secret: "thisisasecret",
+    resave: false,
+    saveUninitialized: true,
+    // cookie: { secure: true }
+  })
+);
+// passport initializations
+passport.use(UserSchema.createStrategy());
+passport.use(new LocalStrategy(UserSchema.authenticate()));
 
+passport.serializeUser(UserSchema.serializeUser());
+passport.deserializeUser(UserSchema.deserializeUser());
+app.use(passport.session());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -19,8 +34,24 @@ app.engine("ejs", ejsMate);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.use(express.static("public"));
 useUnifiedTopology: true;
+
+// the isLoggedIn middleware
+const isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    res.send("You must be logged in first");
+  } else {
+    next();
+  }
+};
+
+// This middleware would store the user in locals
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 // connecting database
 
@@ -86,3 +117,28 @@ mongoose.connect(
   })
 
 
+
+// creating post request to register a user
+  app.post("/register", async function (req, res) {
+    console.log(req.body);
+
+    const user = await new UserSchema(req.body.user);
+
+    const newUser = await UserSchema.register(user, req.body.password);
+    await newUser.save();
+    // res.redirect("/login");
+    res.send("It worked!!")
+  });
+  app.post(
+    "/login",
+    passport.authenticate("local", { failureFlash: false, failureRedirect:'/' }),
+    async (req, res) => {
+      const user = await UserSchema.findOne({ username: req.body.username });
+      // console.log(user);
+      console.log(req.body.username);
+      console.log(req.body.password);
+  
+      // res.redirect(`new/${user.username}`);
+      res.send('Hogaya login')
+    }
+  );
