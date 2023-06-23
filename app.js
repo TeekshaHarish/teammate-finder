@@ -41,7 +41,7 @@ useUnifiedTopology: true;
 // the isLoggedIn middleware
 const isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
-    res.send("You must be logged in first");
+    res.redirect('/login')
   } else {
     next();
   }
@@ -73,7 +73,7 @@ mongoose.connect(
     res.render('home');
   })
 
-  app.get('/listings',(req,res)=>{
+  app.get('/listings',isLoggedIn,(req,res)=>{
     res.render('listing/index');
   })
 
@@ -85,38 +85,46 @@ mongoose.connect(
     res.render('users/signup');
   })
 
-  app.get('/user/:id',(req,res)=>{
+  app.get('/user/:id',isLoggedIn,(req,res)=>{
     const {id}= req.params;
     //dashboard
     res.render('users/profile');
   })
 
-  app.get('/listings/new',(req,res)=>{
+  app.get('/listings/new',isLoggedIn,(req,res)=>{
     res.render('listing/new');
   })
 
-  app.post('/listings',async (req,res)=>{
-    const newlist=await new ListingSchema(req.body.listing);
-    await newlist.save();
+  app.post('/listings',(req,res)=>{
     res.send('POST');
     res.redirect('listing');
   })
 
-  app.get('/listings/:id',(req,res)=>{
+  app.get('/listings/:id',isLoggedIn,(req,res)=>{
     res.render('listing/show');
   })
 
-  app.get('/listings/:id/edit',(req,res)=>{
+  app.get('/listings/:id/edit',isLoggedIn,(req,res)=>{
     res.render('listing/edit');
   })
+  app.get("/logout", function (req, res) {
+    req.logout(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect("/");
+      }
+    });
+  });
 
-  app.put('/listings/:id',(req,res)=>{
+  app.put('/listings/:id',isLoggedIn,(req,res)=>{
     res.redirect('listing');
   })
 
-  app.delete('/listing/:id',(req,res)=>{
+  app.delete('/listing/:id',isLoggedIn,(req,res)=>{
     res.redirect('listing');
   })
+
 
 
 
