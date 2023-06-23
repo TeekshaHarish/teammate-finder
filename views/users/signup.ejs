@@ -8,9 +8,11 @@
         <div class="card-body">
 
           <!-- Makes POST request to /register route -->
-          <form action="/register" method="POST" class="mb-3 needs-validation" >
+          <form action="/register" method="POST" noValidate class="mb-3 needs-validation" >
             <!-- field for first name -->
      
+            <div class="row">
+              <div class="col-6">
 
                 <div class="form-group mb-3">
               
@@ -21,14 +23,20 @@
                   </div>
                 </div>
                 
+              </div>
+
+              <div class="col-6">
 
                 <div class="form-group mb-3">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="user[email]" required>
+                  <input type="email" class="form-control" id="email" name="user[email]">
                   <div class="invalid-feedback">
                     Please enter your email
                   </div>
                 </div>
+
+              </div>
+            </div>
 
             
            
@@ -45,7 +53,7 @@
 
             <div class="form-group mb-3">
               <label for="linkedin">LinkedIN URL</label>
-              <input type="email" id="linkedin" class="form-control" name="user[linkedinUrl]" required>
+              <input type="email" id="linkedin" class="form-control" name="user[linkedin]" required>
               <div class="invalid-feedback">
                 Please enter your username
               </div>
@@ -66,14 +74,14 @@
             </div>
             <div class="form-group mb-3">
               <label for="link1">Link 1</label>
-              <input type="email" id="link1" class="form-control" name="user[link1]" >
+              <input type="email" id="link1" class="form-control" name="user[link1]" required>
               <div class="invalid-feedback">
                 Please enter your username
               </div>
             </div>
             <div class="form-group mb-3">
               <label for="link2">Link 2</label>
-              <input type="email" id="link2" class="form-control" name="user[link2]" >
+              <input type="email" id="link2" class="form-control" name="user[link2]" required>
               <div class="invalid-feedback">
                 Please enter your username
               </div>
@@ -89,12 +97,12 @@
               <label for="link2">Course</label>
               <input type="email" id="link2" class="form-control" name="user[link2]" required>
               <div class="invalid-feedback">
-                Please enter your Course
+                Please enter your username
               </div>
             </div>
             <div class="form-group mb-3">
               <label for="branch">Branch</label>
-              <input type="email" id="branch" class="form-control" name="user[branch]" required>
+              <input type="email" id="link2" class="form-control" name="user[link2]" required>
               <div class="invalid-feedback">
                 Please enter your username
               </div>
@@ -135,5 +143,23 @@
       </div>
     </div>
 
+    <div class="col-sm-4">
+      <div class="card social-block">
+        <div class="card-body">
+          <a class="btn-social btn-google" href="/auth/google" role="button">
+            <i class="fab fa-google"></i>
+            Sign Up with Google
+          </a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
+
+<!-- 
+first name 
+last Name #not required
+phone no
+email
+password -->
