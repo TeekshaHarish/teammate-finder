@@ -9,7 +9,7 @@ const LocalStrategy = require("passport-local");
 const path = require("path");
 const UserSchema=require('./models/users')
 const session = require("express-session"); //done
-
+const ListingSchema=require('./models/listing');
 
 const app = express();
 app.use(
@@ -95,7 +95,9 @@ mongoose.connect(
     res.render('listing/new');
   })
 
-  app.post('/listings',(req,res)=>{
+  app.post('/listings',async (req,res)=>{
+    const newlist=await new ListingSchema(req.body.listing);
+    await newlist.save();
     res.send('POST');
     res.redirect('listing');
   })
