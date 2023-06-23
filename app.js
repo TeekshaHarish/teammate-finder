@@ -42,7 +42,7 @@ mongoose.connect(
     res.render('home');
   })
 
-  app.get('/teammates',(req,res)=>{
+  app.get('/listings',(req,res)=>{
     res.render('listing/index');
   })
 
@@ -56,5 +56,33 @@ mongoose.connect(
 
   app.get('/user/:id',(req,res)=>{
     const {id}= req.params;
+    //dashboard
     res.render('users/profile');
   })
+
+  app.get('/listings/new',(req,res)=>{
+    res.render('listing/new');
+  })
+
+  app.post('/listings',(req,res)=>{
+    res.send('POST');
+    res.redirect('listing');
+  })
+
+  app.get('/listings/:id',(req,res)=>{
+    res.render('listing/show');
+  })
+
+  app.get('/listings/:id/edit',(req,res)=>{
+    res.render('listing/edit');
+  })
+
+  app.put('/listings/:id',(req,res)=>{
+    res.redirect('listing');
+  })
+
+  app.delete('/listing/:id',(req,res)=>{
+    res.redirect('listing');
+  })
+
+
