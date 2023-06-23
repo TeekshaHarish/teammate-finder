@@ -1,2 +1,140 @@
 <% layout('layouts/boilerplate')%>
-<h1>lets sign up bacchas</h1>
+    <div class="container">
+        <h1>Register</h1>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- Makes POST request to /register route -->
+                        <form action="/register" method="POST" noValidate class="mb-3 needs-validation">
+                            <!-- field for first name -->
+
+
+                            <div class="form-group mb-3">
+
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" for="name" name="user[name]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your name
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="user[email]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your email
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group mb-3">
+                                <label for="college">College</label>
+                                <input type="text" class="form-control" id="college" name="user[college]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your College
+                                </div>
+
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="linkedin">LinkedIN URL</label>
+                                <input type="email" id="linkedin" class="form-control" name="user[linkedin]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your username
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="contact">Contact</label>
+                                <input type="email" id="contact" class="form-control" name="user[contact]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your username
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="description">Description</label>
+                                <input type="email" id="description" class="form-control" name="user[description]"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Please enter your username
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="link1">Link 1</label>
+                                <input type="email" id="link1" class="form-control" name="user[link1]">
+                                <div class="invalid-feedback">
+                                    Please enter your username
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="link2">Link 2</label>
+                                <input type="email" id="link2" class="form-control" name="user[link2]">
+                                <div class="invalid-feedback">
+                                    Please enter your username
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="link2">Year</label>
+                                <input type="email" id="link2" class="form-control" name="user[link2]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your username
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="link2">Course</label>
+                                <input type="email" id="link2" class="form-control" name="user[link2]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your Course
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="branch">Branch</label>
+                                <input type="email" id="branch" class="form-control" name="user[branch]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your username
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="skillSet">Skillset</label>
+                                <input type="email" id="skillSet" class="form-control" name="user[skillSet]" required>
+                                <div class="invalid-feedback">
+                                    Please enter your username
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3">
+                                <label for="password">Password *</label>
+                                <input type="password" class="form-control" name="password" required>
+                                <div class="invalid-feedback">
+                                    Please enter your password
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="password">Confirm Password *</label>
+                                <input type="password" class="form-control" name="password2" required>
+                                <div class="invalid-feedback">
+                                    Please re-enter your password
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-dark mt-3">Register
+                                <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+                            </button>
+                        </form>
+                        <p>Already registered? <a href="/login"> Sign In </a></p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
