@@ -95,9 +95,13 @@ mongoose.connect(
     res.render('listing/new');
   })
 
-  app.post('/listings',(req,res)=>{
-    res.send('POST');
-    res.redirect('listing');
+  app.post('/listings', async(req,res)=>{
+    const newlist=await new ListingSchema(req.body.listing);
+    await newlist.save();
+    console.log(newlist._id);
+    console.log(newlist);
+    res.send('Made a lsit!!');
+    // res.redirect(`listing/${newlist._id}`);
   })
 
   app.get('/listings/:id',isLoggedIn,(req,res)=>{
