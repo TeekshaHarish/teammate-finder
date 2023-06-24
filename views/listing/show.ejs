@@ -7,3 +7,6 @@
 <p><%= listing.description %></p>
 
 <a href="/listings">All listings</a>
+<form action="/listings/<%=listing._id%>?_method=DELETE" method="POST">
+<button class="btn btn-danger">Delete</button>
+</form>

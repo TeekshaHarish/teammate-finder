@@ -77,7 +77,7 @@ mongoose.connect(
     res.render('home');
   })
 
-  app.get('/listings',isLoggedIn,(req,res)=>{
+  app.get('/listings',(req,res)=>{
     res.render('listing/index');
   })
 
@@ -97,7 +97,7 @@ mongoose.connect(
     res.render('users/profile',{user});
   })
 
-  app.get('/listings/new',isLoggedIn,(req,res)=>{
+  app.get('/listings/new',(req,res)=>{
     res.render('listing/new');
   })
 
@@ -111,14 +111,14 @@ mongoose.connect(
     // res.redirect(`listing/${newlist._id}`);
   })
 
-  app.get('/listings/:id',isLoggedIn,async(req,res)=>{
+  app.get('/listings/:id',async(req,res)=>{
     // console.log(req.body);
     const{id}=req.params;
     const listing=await ListingSchema.findById(id);
     res.render('listing/show',{listing});
   })
 
-  app.get('/listings/:id/edit',isLoggedIn,async(req,res)=>{
+  app.get('/listings/:id/edit',async(req,res)=>{
     const {id}=req.params;
     const listing=await ListingSchema.findById(id);
     res.render('listing/edit',{listing});
@@ -133,7 +133,7 @@ mongoose.connect(
     });
   });
 
-  app.put('/listings/:id',isLoggedIn,async(req,res)=>{
+  app.put('/listings/:id',async(req,res)=>{
     // res.send('PUT ROUTE');
     const {id}=req.params;
     const listing =await ListingSchema.findByIdAndUpdate(id,req.body.listing);
@@ -141,7 +141,7 @@ mongoose.connect(
     res.redirect(`/listings/${listing._id}`);
   })
 
-  app.delete('/listing/:id',isLoggedIn,(req,res)=>{
+  app.delete('/listing/:id',(req,res)=>{
     res.redirect('listing');
   })
 
