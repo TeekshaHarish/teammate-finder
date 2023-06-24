@@ -5,7 +5,7 @@ const Schema=mongoose.Schema;
 
 const ListingSchema=new Schema({
 
-    catgeory:{
+    category:{
         type:String,
         enum:['Hackathon',"Project","Study Group"],
         required:true
@@ -33,7 +33,7 @@ const ListingSchema=new Schema({
 
 
 });
-userSchema.plugin(passportLocalMongoose)
+// userSchema.plugin(passportLocalMongoose)
 module.exports=mongoose.model("ListingSchema",ListingSchema);
 
 //category

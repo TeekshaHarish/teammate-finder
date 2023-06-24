@@ -1,2 +1,27 @@
 <% layout('layouts/boilerplate')%>
-<h1>your profile page</h1>
+<div class="container d-flex">
+   
+    <h1>your profile page</h1>
+
+</div>
+
+
+<div class="card container" style="width: 18rem;">
+    <div class="card-header">
+       Name:  <%=user.name%>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%=user.description%></li>
+      <li class="list-group-item"><%=user.college%></li>
+      <li class="list-group-item"><%=user.course%> <%=user.year%></li>
+      <li class="list-group-item"><%=user.branch%></li>
+      <li class="list-group-item"><%=user.email%></li>
+      <li class="list-group-item"><a href="<%=user.linkedinUrl%>" target="_a">Linkedin</li></a>
+      <li class="list-group-item"><%=user.contact%></li>
+      <li class="list-group-item"><%=user.username%></li>
+      <li class="list-group-item"><a href="<%=user.link2%>" target="_a">Link1</li></a>
+      <li class="list-group-item"><a href="<%=user.link1%>" target="_a">Link2</li></a>
+      <li class="list-group-item"><%=user.skillSet%></li>
+      
+    </ul>
+  </div>

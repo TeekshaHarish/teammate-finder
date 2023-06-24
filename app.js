@@ -85,10 +85,12 @@ mongoose.connect(
     res.render('users/signup');
   })
 
-  app.get('/user/:id',isLoggedIn,(req,res)=>{
+  app.get('/user/:id',async (req,res)=>{
     const {id}= req.params;
+    const user=await UserSchema.findById(id);
+    console.log(user);
     //dashboard
-    res.render('users/profile');
+    res.render('users/profile',{user});
   })
 
   app.get('/listings/new',isLoggedIn,(req,res)=>{
@@ -97,8 +99,9 @@ mongoose.connect(
 
   app.post('/listings', async(req,res)=>{
     const newlist=await new ListingSchema(req.body.listing);
+    // console.log(req.body);
     await newlist.save();
-    console.log(newlist._id);
+    // console.log(newlist._id);
     console.log(newlist);
     res.send('Made a lsit!!');
     // res.redirect(`listing/${newlist._id}`);
@@ -134,7 +137,7 @@ mongoose.connect(
 
 // creating post request to register a user
   app.post("/register", async function (req, res) {
-    console.log(req.body);
+    // console.log(req.body);
 
     const user = await new UserSchema(req.body.user);
 
@@ -149,8 +152,8 @@ mongoose.connect(
     async (req, res) => {
       const user = await UserSchema.findOne({ username: req.body.username });
       // console.log(user);
-      console.log(req.body.username);
-      console.log(req.body.password);
+      // console.log(req.body.username);
+      // console.log(req.body.password);
   
       // res.redirect(`new/${user.username}`);
       res.send('Hogaya login')
