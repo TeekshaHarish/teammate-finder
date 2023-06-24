@@ -10,6 +10,7 @@ const path = require("path");
 const UserSchema=require('./models/users')
 const session = require("express-session"); //done
 const ListingSchema=require('./models/listing');
+const MethodOverride=require('method-override');
 
 const app = express();
 app.use(
@@ -24,6 +25,7 @@ app.use(
 passport.use(UserSchema.createStrategy());
 passport.use(new LocalStrategy(UserSchema.authenticate()));
 
+
 passport.serializeUser(UserSchema.serializeUser());
 passport.deserializeUser(UserSchema.deserializeUser());
 app.use(passport.session());
@@ -33,6 +35,7 @@ app.set("views", path.join(__dirname, "views"));
 app.engine("ejs", ejsMate);
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(MethodOverride('_method'));
 
 
 app.use(express.static("public"));
@@ -107,12 +110,17 @@ mongoose.connect(
     // res.redirect(`listing/${newlist._id}`);
   })
 
-  app.get('/listings/:id',isLoggedIn,(req,res)=>{
-    res.render('listing/show');
+  app.get('/listings/:id',isLoggedIn,async(req,res)=>{
+    // console.log(req.body);
+    const{id}=req.params;
+    const listing=await ListingSchema.findById(id);
+    res.render('listing/show',{listing});
   })
 
-  app.get('/listings/:id/edit',isLoggedIn,(req,res)=>{
-    res.render('listing/edit');
+  app.get('/listings/:id/edit',isLoggedIn,async(req,res)=>{
+    const {id}=req.params;
+    const listing=await ListingSchema.findById(id);
+    res.render('listing/edit',{listing});
   })
   app.get("/logout", function (req, res) {
     req.logout(function (err) {
@@ -124,8 +132,12 @@ mongoose.connect(
     });
   });
 
-  app.put('/listings/:id',isLoggedIn,(req,res)=>{
-    res.redirect('listing');
+  app.put('/listings/:id',isLoggedIn,async(req,res)=>{
+    // res.send('PUT ROUTE');
+    const {id}=req.params;
+    const listing =await ListingSchema.findByIdAndUpdate(id,req.body.listing);
+    console.log(listing);
+    res.redirect(`/listings/${listing._id}`);
   })
 
   app.delete('/listing/:id',isLoggedIn,(req,res)=>{
