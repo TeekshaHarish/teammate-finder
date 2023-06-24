@@ -142,6 +142,7 @@ mongoose.connect(
   })
 
   app.delete('/listing/:id',(req,res)=>{
+    console.log(req.params.id);
     res.redirect('listing');
   })
 
