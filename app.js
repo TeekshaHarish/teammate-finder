@@ -73,7 +73,7 @@ mongoose.connect(
   });
 
   app.get('/',(req,res)=>{
-    console.log(res.locals);
+    // console.log(res.locals);
     res.render('home');
   })
 
@@ -169,6 +169,6 @@ mongoose.connect(
       // console.log(req.body.password);
   
       // res.redirect(`new/${user.username}`);
-      res.send('Hogaya login')
+      res.redirect('/')
     }
   );
