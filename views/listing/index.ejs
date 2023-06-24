@@ -1,2 +1,10 @@
 <% layout('layouts/boilerplate')%>
 <h1> here are your team mates</h1>
+<% for(let list of listings) {%>
+    <div class="card">
+        <h1><%=list.title%></h1>
+        <h2><%=list.category%></h2>
+        <a href="/listings/<%=list._id%>">See Details</a>
+    </div>
+    
+<% } %>

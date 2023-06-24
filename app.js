@@ -77,8 +77,9 @@ mongoose.connect(
     res.render('home');
   })
 
-  app.get('/listings',(req,res)=>{
-    res.render('listing/index');
+  app.get('/listings',async(req,res)=>{
+    const listings=await ListingSchema.find({});
+    res.render('listing/index',{listings});
   })
 
   app.get('/login',(req,res)=>{
@@ -103,16 +104,11 @@ mongoose.connect(
 
   app.post('/listings', async(req,res)=>{
     const newlist=await new ListingSchema(req.body.listing);
-    // console.log(req.body);
     await newlist.save();
-    // console.log(newlist._id);
-    console.log(newlist);
-    res.send('Made a lsit!!');
-    // res.redirect(`listing/${newlist._id}`);
+    res.redirect(`/listings/${newlist._id}`);
   })
 
   app.get('/listings/:id',async(req,res)=>{
-    // console.log(req.body);
     const{id}=req.params;
     const listing=await ListingSchema.findById(id);
     res.render('listing/show',{listing});
@@ -134,16 +130,16 @@ mongoose.connect(
   });
 
   app.put('/listings/:id',async(req,res)=>{
-    // res.send('PUT ROUTE');
     const {id}=req.params;
     const listing =await ListingSchema.findByIdAndUpdate(id,req.body.listing);
-    console.log(listing);
     res.redirect(`/listings/${listing._id}`);
   })
 
-  app.delete('/listing/:id',(req,res)=>{
-    console.log(req.params.id);
-    res.redirect('listing');
+  app.delete('/listings/:id',async(req,res)=>{
+    const {id}=req.params;
+    const list=await ListingSchema.findByIdAndDelete(id);
+    console.log(id,"deleted");
+    res.redirect('/listings');
   })
 
 
