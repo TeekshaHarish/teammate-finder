@@ -73,6 +73,7 @@ mongoose.connect(
   });
 
   app.get('/',(req,res)=>{
+    console.log(res.locals);
     res.render('home');
   })
 
