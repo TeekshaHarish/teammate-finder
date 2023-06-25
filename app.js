@@ -102,9 +102,15 @@ mongoose.connect(
     res.render('listing/new');
   })
 
-  app.post('/listings', async(req,res)=>{
+  app.post('/listings',isLoggedIn ,async(req,res)=>{
     const newlist=await new ListingSchema(req.body.listing);
+    const user=await UserSchema.findById(res.locals.currentUser._id);
+    newlist.author=user;
+    
+    user.listings.push(newlist);
+    // console.log(user);
     await newlist.save();
+    await user.save();
     res.redirect(`/listings/${newlist._id}`);
   })
 
@@ -114,10 +120,17 @@ mongoose.connect(
     res.render('listing/show',{listing});
   })
 
+
   app.get('/listings/:id/edit',async(req,res)=>{
     const {id}=req.params;
     const listing=await ListingSchema.findById(id);
     res.render('listing/edit',{listing});
+  })
+  app.get('/user/:id/listings',async(req,res)=>{
+    const {id}=req.params;
+    const user=await UserSchema.findById(id).populate({path:"listings"});
+    res.render('users/allUserListings',{user});
+    
   })
   app.get("/logout", function (req, res) {
     req.logout(function (err) {
@@ -147,14 +160,15 @@ mongoose.connect(
 
 // creating post request to register a user
   app.post("/register", async function (req, res) {
-    // console.log(req.body);
+    console.log(req.body);
 
     const user = await new UserSchema(req.body.user);
 
     const newUser = await UserSchema.register(user, req.body.password);
     await newUser.save();
-    // res.redirect("/login");
-    res.send("It worked!!")
+    res.redirect("/login");
+    // console.log(req.body);
+    // res.send("It worked!!")
   });
   app.post(
     "/login",

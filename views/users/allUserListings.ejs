@@ -1,9 +1,7 @@
 <% layout('layouts/boilerplate')%>
 
-<h1 class="text-center mt-3"> Here are your team mates</h1>
-<div>
-<% for(let list of listings) {%>
-    
+<h3>Here are all the listings made by "<%= user.name %>"</h3>
+<% for (let list of user.listings) {%>
     <div class="card mx-auto my-3" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"><%=list.title%></h5>
@@ -15,6 +13,5 @@
           
         </div>
       </div>
-<% } %>
-</div>
+    <% } %>
 

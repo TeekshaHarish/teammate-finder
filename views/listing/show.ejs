@@ -1,12 +1,30 @@
 <% layout('layouts/boilerplate')%>
-<h1> Detalils of vacancy</h1>
-<h2><%= listing.title %></h2>
-<h3><%= listing.category %></h3>
-<p><%= listing.skillSetReq %></p>
-<p><%= listing.skillSetHave %></p>
-<p><%= listing.description %></p>
 
-<a href="/listings">All listings</a>
-<form action="/listings/<%=listing._id%>?_method=DELETE" method="POST">
-<button class="btn btn-danger">Delete</button>
-</form>
+<h1 class="text-center my-3">Details of vacancy</h1>
+
+<div class="container mx-auto">
+  <div class="card mx-auto" style="width: 18rem">
+    <div class="card-header"><%= listing.title %></div>
+    <div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%=listing.category%></li>
+        <li class="list-group-item"><%= listing.skillSetReq %></li>
+        <li class="list-group-item"><%= listing.skillSetHave %></li>
+        <li class="list-group-item"><%= listing.description %></li>
+        <% if(currentUser && currentUser.equals(listing.author)){ %>
+        <li class="list-group-item d-flex mx-auto">
+          <a href="/listings/<%=listing._id%>/edit">
+            <button class="btn btn-primary mx-3">Update</button>
+          </a>
+          <form
+            action="/listings/<%=listing._id%>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-danger mx-3">Delete</button>
+          </form>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</div>

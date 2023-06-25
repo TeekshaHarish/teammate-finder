@@ -60,7 +60,14 @@ const userSchema= new Schema({
                 type:String
             }
         ]
+    },
+    listings:[
+        {
+        type:Schema.Types.ObjectId,
+        ref:"ListingSchema"
+
     }
+]
 
 })
 userSchema.plugin(passportLocalMongoose)
