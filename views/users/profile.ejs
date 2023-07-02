@@ -1,20 +1,58 @@
 <% layout('layouts/boilerplate')%>
-<h1 class="text-center my-3">Your Details</h1>
-<div class="card container" style="width: 18rem;">
-    <div class="card-header">
-       Name:  <%=user.name%>
+<link rel="stylesheet" href="/styles/profile.css">
+   
+  <div class="container">
+    <h1>Profile</h1>
+    <div class="profile-details">
+      <div class="detail">
+        <span>Name:</span> <%= user.name %>
+      </div>
+      <div class="detail">
+        <!-- <span>Email:</span> <%= user.email %> -->
+      </div>
+      <div class="detail">
+        <span>College:</span> <%= user.college %>
+      </div>
+      <div class="detail">
+        <span></span> <a href="<%= user.linkedinUrl %>">Linkedin</a>
+      </div>
+      <div class="detail">
+        <span>Contact:</span> <%= user.contact %>
+      </div>
+      <div class="detail">
+        <span>Username:</span> <%= user.username %>
+      </div>
+      <div class="detail">
+        <span>Description:</span>
+        <div class="description">
+          <%= user.description %>
+        </div>
+      </div>
+      <div class="detail">
+        <span>Links:</span>
+        <div class="links">
+          <a href="<%= user.link1 %>">Link 1</a>
+          <a href="<%= user.link2 %>">Link 2</a>
+        </div>
+      </div>
+      <div class="detail">
+        <span>Year:</span> <%= user.year %>
+      </div>
+      <div class="detail">
+        <span>Course:</span> <%= user.course %>
+      </div>
+      <div class="detail">
+        <span>Branch:</span> <%= user.branch %>
+      </div>
+      <div class="detail">
+        <span>Skill Set:</span>
+        <ul>
+          <% user.skillSet.forEach(function(skill) { %>
+            <li><%= skill %></li>
+          <% }); %>
+        </ul>
+      </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><%=user.description%></li>
-      <li class="list-group-item"><%=user.college%></li>
-      <li class="list-group-item"><%=user.course%> <%=user.year%></li>
-      <li class="list-group-item"><%=user.branch%></li>
-      <li class="list-group-item"><%=user.email%></li>
-      <li class="list-group-item"><a href="<%=user.linkedinUrl%>" target="_a">Linkedin</li></a>
-      <li class="list-group-item"><%=user.contact%></li>
-      <li class="list-group-item"><%=user.username%></li>
-      <li class="list-group-item"><a href="<%=user.link2%>" target="_a">Link1</li></a>
-      <li class="list-group-item"><a href="<%=user.link1%>" target="_a">Link2</li></a>
-      <li class="list-group-item"><%=user.skillSet%></li>
-    </ul>
-  </div>
+
+</div>
+

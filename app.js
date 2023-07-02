@@ -11,6 +11,8 @@ const UserSchema=require('./models/users')
 const session = require("express-session"); //done
 const ListingSchema=require('./models/listing');
 const MethodOverride=require('method-override');
+const catchAsync=require('./utils/catchAsync');
+const ExpressError=require('./utils/ExpressError')
 
 const app = express();
 app.use(
@@ -31,6 +33,7 @@ passport.deserializeUser(UserSchema.deserializeUser());
 app.use(passport.session());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname,'public')));
 
 app.engine("ejs", ejsMate);
 
@@ -64,7 +67,7 @@ mongoose.connect(
   );
   const db = mongoose.connection;
   db.on("error", console.error.bind(console, "connectioon error:"));
-  db.once("open", () => {
+  db.once("open", () => { 
     console.log("Database connected");
   });
 
@@ -93,7 +96,7 @@ mongoose.connect(
   app.get('/user/:id',async (req,res)=>{
     const {id}= req.params;
     const user=await UserSchema.findById(id);
-    console.log(user);
+    // console.log(user);
     //dashboard
     res.render('users/profile',{user});
   })
@@ -151,7 +154,7 @@ mongoose.connect(
   app.delete('/listings/:id',async(req,res)=>{
     const {id}=req.params;
     const list=await ListingSchema.findByIdAndDelete(id);
-    console.log(id,"deleted");
+    // console.log(id,"deleted");
     res.redirect('/listings');
   })
 
@@ -159,22 +162,39 @@ mongoose.connect(
 
 
 // creating post request to register a user
-  app.post("/register", async function (req, res) {
-    console.log(req.body);
-
-    const user = await new UserSchema(req.body.user);
+  app.post("/register", catchAsync(async(req, res) =>{
+    // console.log(req.body);
+    const {password,password2}=req.body;
+    if(password!==password2){
+      console.log("The Passwords do not match");
+      return res.redirect("/signup");
+    }
+try{
+  const user = await new UserSchema(req.body.user);
 
     const newUser = await UserSchema.register(user, req.body.password);
+
+}catch(e){
+  return res.render('error',{e})
+  // return res.redirect('/');
+
+}
+    
     await newUser.save();
     res.redirect("/login");
     // console.log(req.body);
     // res.send("It worked!!")
-  });
+  }));
   app.post(
     "/login",
     passport.authenticate("local", { failureFlash: false, failureRedirect:'/' }),
-    async (req, res) => {
-      const user = await UserSchema.findOne({ username: req.body.username });
+    catchAsync(async (req, res) => {
+      try{
+        const user = await UserSchema.findOne({ username: req.body.username });
+      }catch(e){
+        return res.render('error',{e})
+      }
+     
       // console.log(user);
       // console.log(req.body.username);
       // console.log(req.body.password);
@@ -182,4 +202,4 @@ mongoose.connect(
       // res.redirect(`new/${user.username}`);
       res.redirect('/')
     }
-  );
+  ));
