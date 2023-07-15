@@ -167,7 +167,8 @@ mongoose.connect(
     const {password,password2}=req.body;
     if(password!==password2){
       console.log("The Passwords do not match");
-      return res.redirect("/signup");
+      // return res.redirect("/signup");
+      return res.send("Please enter same password in both fields")
     }
 try{
   const user = await new UserSchema(req.body.user);

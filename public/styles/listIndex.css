@@ -6,11 +6,15 @@
     }
     
     .container {
-      max-width: 800px;
+      /* max-width: 800px; */
       margin: 0 auto;
       padding: 20px;
-      /* display: flex; */
-      /* flex-direction: */
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      
+       
     }
     
     .card {
@@ -22,6 +26,11 @@
       border-radius: 5px;
       padding: 20px;
       margin-bottom: 20px;
+      /* max-height: 15rem;
+      max-width: 20rem; */
+      height: 20rem;
+      width: 20rem;
+      margin:5px;
       
       
     }
@@ -36,6 +45,7 @@
     
     .card-content {
       flex: 1;
+      /* border:10px solid pink; */
     }
     
     .card-title {
@@ -61,3 +71,56 @@
       border-radius: 3px;
       margin-right: 10px;
     }
+    .myButton{
+     
+        position:absolute;
+        bottom: 9px;
+      right:10px;
+      border-radius: 30px;
+      background-color: black;
+      
+      color:white;
+    }
+    .myButton:hover{
+      background-color: black;
+      color:white;
+      transition:all;
+      transform: scale(1.1);
+      transition-duration: 200ms;
+      
+  }
+  .cardCategory{
+    position:absolute;
+    bottom: 9px;
+  left:10px;
+  font-weight: bolder;
+  
+
+  }
+  .colorBg{
+    height:15rem;
+    padding: 15px;
+    background-color: rgb(246, 216, 191);
+    min-height:120px;
+    border-radius: 10%;
+  }
+  .myCard{
+    border-radius: 5%;
+  }
+  .myTitle{
+    font-size:1.7rem;
+  }
+  .myDesc{
+    font-size:1.2rem;
+  }
+  .myDate{
+   padding-left: 10px;
+    height:30px;
+    width:100px;
+    background-color: white;
+    border-radius: 20%;
+    color: black;
+  }
+
+   
+  
