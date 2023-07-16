@@ -1,173 +1,196 @@
 <% layout('layouts/boilerplate')%>
-<div class="container">
-  <h1>Register</h1>
+  <div class="container">
+    <h1 class='text-center my-2'>Register</h1>
 
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="card">
-        <div class="card-body">
+    <div class="row">
+      <div class="col-md-8 offset-2">
+        <div class="card">
+          <div class="card-body">
 
-          <!-- Makes POST request to /register route -->
-          <form action="/register" method="POST" noValidate class="mb-3 needs-validation" >
-            <!-- field for first name -->
-     
-            <div class="row">
-              <div class="col-6">
+            <!-- Makes POST request to /register route -->
+            <form action="/register" method="POST" noValidate class="mb-3 needs-validation">
+              <!-- field for first name -->
 
-                <div class="form-group mb-3">
-              
-                  <label for="name">Name</label>
-                  <input type="text" class="form-control" for="name" name="user[name]" required>
-                  <div class="invalid-feedback">
-                    Please enter your name
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" for="name" name="user[name]" required>
+                    <div class="invalid-feedback">
+                      Please enter your name
+                    </div>
                   </div>
                 </div>
-                
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="user[email]" required>
+                    <div class="invalid-feedback">
+                      Please enter your email
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="col-6">
 
-                <div class="form-group mb-3">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="user[email]">
-                  <div class="invalid-feedback">
-                    Please enter your email
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="email">Username</label>
+                    <input type="text" class="form-control" id="email" name="user[username]" required>
+                    <div class="invalid-feedback">
+                      Please enter your username
+                    </div>
                   </div>
                 </div>
-
-                <div class="form-group mb-3">
-                  <label for="email">Username</label>
-                  <input type="text" class="form-control" id="email" name="user[username]">
-                  <div class="invalid-feedback">
-                    Please enter your username
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="college">College</label>
+                    <input type="text" class="form-control" id="college" name="user[college]" required>
+                    <div class="invalid-feedback">
+                      Please enter your College
+                    </div>
                   </div>
                 </div>
-
               </div>
-            </div>
 
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="linkedin">LinkedIN URL</label>
+                    <input type="text" id="linkedinUrl" class="form-control" name="user[linkedinUrl]" required>
+                    <div class="invalid-feedback">
+                      Please enter your LinkedIN URL
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="contact">Contact</label>
+                    <input type="text" id="contact" class="form-control" name="user[contact]" required>
+                    <div class="invalid-feedback">
+                      Please enter your Contact
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="description">Description</label>
+                <input type="text" id="description" class="form-control" name="user[description]" required>
+                <div class="invalid-feedback">
+                  Please enter Description
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="link1">Link 1</label>
+                    <input type="text" id="link1" class="form-control" name="user[link1]">
+                    <div class="invalid-feedback">
+                      Please enter Link 1
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="link2">Link 2</label>
+                    <input type="text" id="link2" class="form-control" name="user[link2]">
+                    <div class="invalid-feedback">
+                      Please enter Link 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <!-- <div class="form-group mb-3">
+                    <label for="link2">Year</label>
+                    <input type="text" id="link2" class="form-control" name="user[year]" required>
+                    <div class="invalid-feedback">
+                      Please enter your Year
+                    </div>
+                  </div> -->
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Year</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <!-- <div class="form-group mb-3">
+                    <label for="link2">Course</label>
+                    <input type="text" id="link2" class="form-control" name="user[course]" required>
+                    <div class="invalid-feedback">
+                      Please enter your Course
+                    </div>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Course</label>
+                  <select class="form-control" id="exampleFormControlSelect1">
+                    <option>B.Tech</option>
+                    <option>M.Tech</option>
+                    <option>BBA</option>
+                    <option>MBA</option>
+                    <option>B.Des</option>
+                    <option>M.Sc</option>
+                    <option>B.Sc</option>
+                    <option>B.Comm</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="branch">Branch</label>
+                    <input type="text" id="link2" class="form-control" name="user[branch]" required>
+                    <div class="invalid-feedback">
+                      Please enter your Branch
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="skillSet">Skillset</label>
+                    <input type="text" id="skillSet" class="form-control" name="user[skillSet]" required>
+                    <div class="invalid-feedback">
+                      Please enter your Skillset
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="password">Password *</label>
+                <input type="" class="form-control" name="password" required>
+                <div class="invalid-feedback">
+                  Please enter your password
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="password">Confirm Password *</label>
+                <input type="password" class="form-control" name="password2" required>
+                <div class="invalid-feedback">
+                  Please re-enter your password
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-dark mt-3">Register</button>
             
-           
-
-
-            <div class="form-group mb-3">
-              <label for="college">College</label>
-              <input type="text" class="form-control" id="college" name="user[college]" required>
-              <div class="invalid-feedback">
-                Please enter your College
-              </div>
-              
+            <div class="col-md-6">Already registered? <a href="/login"> Sign In </a>
             </div>
-
-            <div class="form-group mb-3">
-              <label for="linkedin">LinkedIN URL</label>
-              <input type="text" id="linkedinUrl" class="form-control" name="user[linkedinUrl]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-            <div class="form-group mb-3">
-              <label for="contact">Contact</label>
-              <input type="text" id="contact" class="form-control" name="user[contact]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-            <div class="form-group mb-3">
-              <label for="description">Description</label>
-              <input type="text" id="description" class="form-control" name="user[description]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-            <div class="form-group mb-3">
-              <label for="link1">Link 1</label>
-              <input type="text" id="link1" class="form-control" name="user[link1]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-            <div class="form-group mb-3">
-              <label for="link2">Link 2</label>
-              <input type="text" id="link2" class="form-control" name="user[link2]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-            <div class="form-group mb-3">
-              <label for="link2">Year</label>
-              <input type="text" id="link2" class="form-control" name="user[year]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-            <div class="form-group mb-3">
-              <label for="link2">Course</label>
-              <input type="text" id="link2" class="form-control" name="user[course]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-            <div class="form-group mb-3">
-              <label for="branch">Branch</label>
-              <input type="text" id="link2" class="form-control" name="user[branch]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-            <div class="form-group mb-3">
-              <label for="skillSet">Skillset</label>
-              <input type="text" id="skillSet" class="form-control" name="user[skillSet]" required>
-              <div class="invalid-feedback">
-                Please enter your username
-              </div>
-            </div>
-
-
-            <div class="form-group mb-3">
-              <label for="password">Password *</label>
-              <input type="" class="form-control" name="password" required>
-              <div class="invalid-feedback">
-                Please enter your password
-              </div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="password">Confirm Password *</label>
-              <input type="password" class="form-control" name="password2" required>
-              <div class="invalid-feedback">
-                Please re-enter your password
-              </div>
-            </div>
-            
-           
-            <button type="submit" class="btn btn-dark mt-3">Register
-            <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
-            </button>
-          </form>
-          <p>Already registered? <a href="/login"> Sign In </a></p>
-
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-sm-4">
-      <div class="card social-block">
-        <div class="card-body">
-          <a class="btn-social btn-google" href="/auth/google" role="button">
-            <i class="fab fa-google"></i>
-            Sign Up with Google
-          </a>
-        </div>
-      </div>
     </div>
-
   </div>
-</div>
-
-<!-- 
-first name 
-last Name #not required
-phone no
-email
-password -->
