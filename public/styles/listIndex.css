@@ -81,7 +81,7 @@
       
       color:white;
     }
-    .myButton:hover{
+    .myButton:hover , .myButton::after{
       background-color: black;
       color:white;
       transition:all;

@@ -121,6 +121,7 @@ mongoose.connect(
     const{id}=req.params;
     const listing=await ListingSchema.findById(id);
     res.render('listing/show',{listing});
+    // console.log(currentUser);
   })
 
 
