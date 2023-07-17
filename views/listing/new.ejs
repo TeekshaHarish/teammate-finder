@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate')%>
+
     <div class="container">
         <h1>Create a new vacancy</h1>
         <div class="row">
@@ -24,25 +25,47 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mb-3">
+                            <!-- <div class="form-group mb-3">
                                 <label for="title">Skill Set Required </label>
                                 <input type="text" class="form-control" id="title" name="listing[skillSetReq]" required>
                                 <div class="invalid-feedback">
                                    
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="form-group mb-3">
+                            <!-- <div class="form-group mb-3">
                                 <label for="title">Skill Set We Have</label>
                                 <input type="text" class="form-control" id="title" name="listing[skillSetHave]" required>
                                 <div class="invalid-feedback">
                                    
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group mb-3">
                                 <label for="title">Description</label>
                                 <input type="text" class="form-control" id="title" name="listing[description]" required>
+                                <div class="invalid-feedback">
+                                   
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="title">Skill Set Required </label>
+                                <select class="form-select"  multiple name="listing[skillSetReq]">
+                                    <option value="HTML">HTML</option>
+                                    <option value="CSS">CSS</option>
+                                    <option value="Javascript">Javascript</option>
+                                  </select>
+                                <div class="invalid-feedback">
+                                   
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="title">Skill Set I have</label>
+                                <select class="form-select" multiple name="listing[skillSetHave]">
+                                    <option value="HTML">HTML</option>
+                                    <option value="CSS">CSS</option>
+                                    <option value="Javascript">Javascript</option>
+                                  </select>
                                 <div class="invalid-feedback">
                                    
                                 </div>
@@ -61,4 +84,4 @@
 
 
     <a href="/listings">All listings</a>
-    
+   

@@ -25,18 +25,58 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="title">Skill Set Required </label>
-                            <input type="text" class="form-control" id="title" name="listing[skillSetReq]" value="<%=listing.skillSetReq%>" required>
+                            <label for="title">Skill Set Required</label>
+                            <select class="form-select" multiple name="listing[skillSetReq]">
+                                <option 
+                                <% if(listing.skillSetReq.includes("HTML") ){ %>
+                                selected
+                                <% } %>
+                                value="HTML">HTML</option>
+                                <option 
+                                <% if(listing.skillSetReq.includes("CSS") ){ %>
+                                    selected
+                                    <% } %>
+                                     value="CSS">CSS</option>
+                                <option 
+                                <% if(listing.skillSetReq.includes("Javascript") ){ %>
+                                    selected
+                                    <% } %>
+                                    value="Javascript">Javascript</option>
+                              </select>
                             <div class="invalid-feedback">
-
+                               
                             </div>
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for="title">Skill Set We Have</label>
-                            <input type="text" class="form-control" id="title" name="listing[skillSetHave]"  value="<%=listing.skillSetHave%>" required>
-                            <div class="invalid-feedback">
 
+                        <div class="form-group mb-3">
+                            <label for="title">Skill Set I have</label>
+                            <select class="form-select" multiple name="listing[skillSetHave]">
+                                <option 
+                                <% if(listing.skillSetHave.includes("HTML") ){ %>
+                                    selected
+                                    <% } %>
+                                    value="HTML">
+                                    HTML
+                                </option>
+
+                               <option 
+                                <% if(listing.skillSetHave.includes("CSS") ){ %>
+                                    selected
+                                    <% } %>
+                                    value="CSS">
+                                    CSS
+                                </option>
+                                <option 
+                                <% if(listing.skillSetHave.includes("Javascript") ){ %>
+                                    selected
+                                    <% } %>
+                                    value="Javascript">
+                                    Javascript
+                                </option>
+                              </select>
+                            <div class="invalid-feedback">
+                               
                             </div>
                         </div>
 

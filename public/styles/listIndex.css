@@ -28,7 +28,7 @@
       margin-bottom: 20px;
       /* max-height: 15rem;
       max-width: 20rem; */
-      height: 20rem;
+      height: 22rem;
       width: 20rem;
       margin:5px;
       
@@ -98,7 +98,7 @@
 
   }
   .colorBg{
-    height:15rem;
+    height:16rem;
     padding: 15px;
     background-color: rgb(246, 216, 191);
     min-height:120px;

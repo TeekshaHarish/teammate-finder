@@ -107,6 +107,7 @@ mongoose.connect(
 
   app.post('/listings',isLoggedIn ,async(req,res)=>{
     const newlist=await new ListingSchema(req.body.listing);
+    // console.log(req.body);
     const user=await UserSchema.findById(res.locals.currentUser._id);
     newlist.author=user;
     
@@ -115,6 +116,7 @@ mongoose.connect(
     await newlist.save();
     await user.save();
     res.redirect(`/listings/${newlist._id}`);
+    // return res.redirect('/');
   })
 
   app.get('/listings/:id',async(req,res)=>{
@@ -155,7 +157,14 @@ mongoose.connect(
   app.delete('/listings/:id',async(req,res)=>{
     const {id}=req.params;
     const list=await ListingSchema.findByIdAndDelete(id);
+    const user=await UserSchema.findById(res.locals.currentUser._id);
+    // console.log(user.listings);
+    const index = user.listings.indexOf(id);
+    user.listings.splice(index, 1);
+    // console.log(user.listings);
+    // console.log(index);
     // console.log(id,"deleted");
+    await user.save()
     res.redirect('/listings');
   })
 
