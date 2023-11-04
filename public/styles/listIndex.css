@@ -2,7 +2,8 @@
     body {
       font-family: Arial, sans-serif;
       /* background-color: #C5FAD5,; */
-      background: #C5FAD5;
+      background: #241468;
+      background: linear-gradient(#241468,#920047);
       color: #333;
     }
     
@@ -33,9 +34,9 @@
 
       margin:18px;
 
-      background-color: #ac91ed;
-      /* border:10px solid white; */
-      border-radius: 10px;
+      background-color: #F79BD3;
+      border:7.5px solid #9F0D7F;
+      border-radius: 30px;
     }
 
     .innerCard{
@@ -87,12 +88,12 @@
         bottom: 9px;
       right:10px;
       border-radius: 30px;
-      background-color: black;
+      background-color:#9F0D7F;
       
       color:white;
     }
     .myButton:hover , .myButton::after{
-      background-color: black;
+      background-color: #9F0D7F;
       color:white;
       transition:all;
       transform: scale(1.1);
@@ -140,8 +141,9 @@ left:12px;
   border-radius: 10px;
 }
 .card-text>span{
-  color:#FFFFD2;
-  font-size: 0.9rem;
+  color:#241468;
+  font-size: 1.1rem;
+  font-weight:400;
 }
    
   
