@@ -89,7 +89,7 @@ mongoose.connect(
     const obj={};
     if(category!="All")obj.category=category;
     if(skillSetReq!="NA") obj.skillSetReq=skillSetReq;
-    let listings=await ListingSchema.find(obj);
+    let listings=await ListingSchema.find(obj).populate('author');
     // console.log(obj);
     // console.log(listings);
     if(obj.skillSetReq){
@@ -109,7 +109,7 @@ mongoose.connect(
   })
 
   app.get('/login',(req,res)=>{
-    res.render('users/login');
+    res.render('users/login');  
   })
 
   app.get('/signup',(req,res)=>{

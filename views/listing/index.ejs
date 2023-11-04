@@ -53,6 +53,7 @@
           <h6 class="card-subtitle mb-2 text-muted cardCategory"><%=item.category%></h6>
           <!-- <a href="#" class="card-link"><%= item.title %></a>
           <a href="#" class="card-link"><%= item.title %></a> -->
+          <p class="card-text">Submitted By: <span class="text-muted"> <%= item.author.name %></span></p>
           <a href="/listings/<%=item._id%>"> 
             <button class="btn myButton">See Details</button>
           </a>

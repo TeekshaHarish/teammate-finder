@@ -14,7 +14,7 @@
         <li class="list-group-item">Skill Set Have : <%= listing.skillSetHave %></li>
         
         <li class="list-group-item">Desciption: <%= listing.description %></li>
-        <% if(currentUser){ %>
+        <% if(currentUser && currentUser.equals(listing.author)){ %>
           <!-- && currentUser.equals(listing.author) -->
         <li class="list-group-item d-flex mx-auto">
           <a href="/listings/<%=listing._id%>/edit">
