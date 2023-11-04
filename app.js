@@ -149,7 +149,6 @@ mongoose.connect(
     // console.log(currentUser);
   })
 
-
   app.get('/listings/:id/edit',async(req,res)=>{
     const {id}=req.params;
     const listing=await ListingSchema.findById(id);

@@ -41,13 +41,15 @@
 
   <div class="container">
     <% for(let item of listings) {%>
-      <div class="card" style="width: 18rem;">
+      <div class="card myCard">
+
+        <div class="innerCard">
         <div class="card-body">
-          <h4 class="card-title"><%= item.title %></h4>
+          <h4 class="card-title myTitle"><%= item.title %></h4>
           <!-- <h6 class="card-subtitle mb-2 text-muted"><%= item.description %></h6> -->
-          <p class="card-text"><%= item.description %></p>
-          <p class="card-text"><%= item.skillSetHave %></p>
-          <p class="card-text"><%= item.skillSetReq %></p>
+          <!-- <p class="card-text"><%= item.description %></p> -->
+          <p class="card-text"><span>Skills We Have:</span> <%= item.skillSetHave %></p>
+          <p class="card-text"><span>Skills We Need:</span> <%= item.skillSetReq %></p>
           <h6 class="card-subtitle mb-2 text-muted cardCategory"><%=item.category%></h6>
           <!-- <a href="#" class="card-link"><%= item.title %></a>
           <a href="#" class="card-link"><%= item.title %></a> -->
@@ -56,8 +58,11 @@
           </a>
         </div>
       </div>
-      <div class="card p-2 myCard">
-        <!-- <img src="<%= item.image %>" alt="<%= item.title %>"> -->
+    </div>
+
+
+      <!-- <div class="card p-2 myCard">
+        <img src="<%= item.image %>" alt="<%= item.title %>">
         <div class="card-content">
           <div class="colorBg mt-0">
           <div class="card-title myDate">Date</div>
@@ -73,7 +78,7 @@
         </a>
         </div>
         
-      </div>
+      </div> -->
     <% }; %>
   </div>
 

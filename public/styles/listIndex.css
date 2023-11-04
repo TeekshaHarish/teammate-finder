@@ -1,7 +1,8 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      /* background-color: #C5FAD5,; */
+      background: #C5FAD5;
       color: #333;
     }
     
@@ -21,18 +22,27 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      padding: 20px;
-      margin-bottom: 20px;
-      /* max-height: 15rem;
-      max-width: 20rem; */
-      height: 22rem;
-      width: 20rem;
-      margin:5px;
       
       
+      padding: 0.5rem 0.6rem;
+      
+      min-height:15rem;
+      max-height:22rem;
+      min-width:20rem;
+      max-width:20rem;
+
+      margin:18px;
+
+      background-color: #ac91ed;
+      /* border:10px solid white; */
+      border-radius: 10px;
+    }
+
+    .innerCard{
+      
+      /* height:100%; */
+      border-radius: 10px;
+
     }
     
     .card img {
@@ -91,31 +101,28 @@
   }
   .cardCategory{
     position:absolute;
-    bottom: 9px;
-  left:10px;
+bottom:9px;
+left:12px;
   font-weight: bolder;
   
 
   }
-  .colorBg{
-    height:16rem;
-    padding: 15px;
-    background-color: rgb(246, 216, 191);
-    min-height:120px;
-    border-radius: 10%;
-  }
-  .myCard{
+  
+  /* .myCard{
     max-height: 300px;
     max-width: 300px;
     overflow: auto;
     border-radius: 5%;
-  }
+  } */
   .myTitle{
-    font-size:1.7rem;
+    font-size:1.5rem;
+    text-align: center;
+    text-transform:capitalize;
+    margin-bottom: 1rem;
   }
-  .myDesc{
-    font-size:1.2rem;
-  }
+  
+
+
   .myDate{
    padding-left: 10px;
     height:30px;
@@ -124,12 +131,17 @@
     border-radius: 20%;
     color: black;
   }
+
+
 .mySelect{
   height:60px;
   width:400px;
   border:none;
   border-radius: 10px;
-  
+}
+.card-text>span{
+  color:#FFFFD2;
+  font-size: 0.9rem;
 }
    
   
