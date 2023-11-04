@@ -33,7 +33,24 @@ const ListingSchema=new Schema({
     author:{
             type:Schema.Types.ObjectId,
             ref:"UserSchema"
+    },
+    vacancy:{
+        type:Number,
+        required:true
+    },
+    requestArr:{
+        type:[
+            {type:Schema.Types.ObjectId,
+            ref:"User"}
+        ]
+    },
+    acceptedArr:{
+        type:[
+            {type:Schema.Types.ObjectId,
+            ref:"User"}
+        ]
     }
+
 
 
 });

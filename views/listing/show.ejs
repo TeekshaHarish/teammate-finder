@@ -28,6 +28,9 @@
           </form>
         </li>
         <% } %>
+        <form action="/listings/<%=listing._id%>/apply" method="POST">
+          <button class="btn btn-success">Apply</button>
+        </form>
       </ul>
     </div>
   </div>
