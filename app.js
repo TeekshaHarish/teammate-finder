@@ -82,7 +82,7 @@ mongoose.connect(
   })
 
   app.get('/listings',async(req,res)=>{
-    console.log(req.query);
+    // console.log(req.query);
     let {category, skillSetReq}=req.query;
     if(!category) category="All";
     if(!skillSetReq) skillSetReq="NA";
@@ -90,7 +90,7 @@ mongoose.connect(
     if(category!="All")obj.category=category;
     if(skillSetReq!="NA") obj.skillSetReq=skillSetReq;
     let listings=await ListingSchema.find(obj);
-    console.log(obj);
+    // console.log(obj);
     // console.log(listings);
     if(obj.skillSetReq){
     listings=listings.filter((list)=>{
