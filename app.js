@@ -13,7 +13,7 @@ const ListingSchema=require('./models/listing');
 const MethodOverride=require('method-override');
 const catchAsync=require('./utils/catchAsync');
 const ExpressError=require('./utils/ExpressError');
-const { log } = require("console");
+// const { log } = require("console");
 
 const app = express();
 app.use(
@@ -43,7 +43,7 @@ app.use(MethodOverride('_method'));
 
 
 app.use(express.static("public"));
-useUnifiedTopology: true;
+// useUnifiedTopology: true;
 
 // the isLoggedIn middleware
 const isLoggedIn = (req, res, next) => {
@@ -190,9 +190,6 @@ mongoose.connect(
     res.redirect('/listings');
   })
 
-
-
-
 // creating post request to register a user
   app.post("/register", catchAsync(async(req, res) =>{
     // console.log(req.body);
@@ -203,16 +200,21 @@ mongoose.connect(
       return res.send("Please enter same password in both fields")
     }
 try{
-  const user = await new UserSchema(req.body.user);
-
+    const user = await new UserSchema(req.body.user);
     const newUser = await UserSchema.register(user, req.body.password);
     await newUser.save();
+    // req.login(newUser);
+    req.login(newUser,(err)=>{
+      if(err){
+          return next(err);
+      }
+      res.redirect('/listings');
+  })
 
 }catch(e){
   return res.render('error',{e})
-
 }
-    res.redirect("/login");
+    // res.redirect("/login");
   }));
   app.post(
     "/login",

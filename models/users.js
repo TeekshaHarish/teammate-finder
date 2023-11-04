@@ -44,11 +44,11 @@ const userSchema= new Schema({
     },
     year:{
         type:String,
-        enum:['I','II','III','IV','V']
+        enum:['1','2','3','4','5']
     },
     course:{
         type:String,
-        enum:['B.Tech','B.E','B.Sc','BBA']
+        enum:['B.Tech','M.Tech','BBA','MBA','B.Des','M.Sc','B.Sc','B.Comm']
 
     },
     branch:{
