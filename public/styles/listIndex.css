@@ -4,7 +4,8 @@
       /* background-color: #C5FAD5,; */
       background: #241468;
       background: linear-gradient(#241468,#920047);
-      color: #333;
+      color: white;
+      min-height:100vh;
     }
     
     .container {
