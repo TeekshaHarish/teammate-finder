@@ -41,6 +41,21 @@
 
   <div class="container">
     <% for(let item of listings) {%>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h4 class="card-title"><%= item.title %></h4>
+          <!-- <h6 class="card-subtitle mb-2 text-muted"><%= item.description %></h6> -->
+          <p class="card-text"><%= item.description %></p>
+          <p class="card-text"><%= item.skillSetHave %></p>
+          <p class="card-text"><%= item.skillSetReq %></p>
+          <h6 class="card-subtitle mb-2 text-muted cardCategory"><%=item.category%></h6>
+          <!-- <a href="#" class="card-link"><%= item.title %></a>
+          <a href="#" class="card-link"><%= item.title %></a> -->
+          <a href="/listings/<%=item._id%>"> 
+            <button class="btn myButton">See Details</button>
+          </a>
+        </div>
+      </div>
       <div class="card p-2 myCard">
         <!-- <img src="<%= item.image %>" alt="<%= item.title %>"> -->
         <div class="card-content">
