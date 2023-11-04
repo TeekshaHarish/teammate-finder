@@ -12,7 +12,8 @@ const session = require("express-session"); //done
 const ListingSchema=require('./models/listing');
 const MethodOverride=require('method-override');
 const catchAsync=require('./utils/catchAsync');
-const ExpressError=require('./utils/ExpressError')
+const ExpressError=require('./utils/ExpressError');
+const { log } = require("console");
 
 const app = express();
 app.use(
@@ -81,7 +82,29 @@ mongoose.connect(
   })
 
   app.get('/listings',async(req,res)=>{
-    const listings=await ListingSchema.find({});
+    console.log(req.query);
+    let {category, skillSetReq}=req.query;
+    if(!category) category="All";
+    if(!skillSetReq) skillSetReq="NA";
+    const obj={};
+    if(category!="All")obj.category=category;
+    if(skillSetReq!="NA") obj.skillSetReq=skillSetReq;
+    let listings=await ListingSchema.find(obj);
+    console.log(obj);
+    // console.log(listings);
+    if(obj.skillSetReq){
+    listings=listings.filter((list)=>{
+      let arr=list.skillSetReq;
+      for(let i=0;i<arr.length;i++){
+        let flag=false;
+        for(let j=0;j<skillSetReq.length;j++){
+          if(arr[i]==skillSetReq[j]) flag=true;
+        }
+        if(!flag) return false;
+      }
+      return true;
+    })
+    }
     res.render('listing/index',{listings});
   })
 
@@ -184,17 +207,13 @@ try{
   const user = await new UserSchema(req.body.user);
 
     const newUser = await UserSchema.register(user, req.body.password);
+    await newUser.save();
 
 }catch(e){
   return res.render('error',{e})
-  // return res.redirect('/');
 
 }
-    
-    await newUser.save();
     res.redirect("/login");
-    // console.log(req.body);
-    // res.send("It worked!!")
   }));
   app.post(
     "/login",
@@ -203,7 +222,7 @@ try{
       try{
         const user = await UserSchema.findOne({ username: req.body.username });
       }catch(e){
-        return res.render('error',{e})
+        return res.render('error',{e})  
       }
      
       // console.log(user);
