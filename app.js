@@ -154,7 +154,7 @@ mongoose.connect(
 
   app.get('/listings/:id',async(req,res)=>{
     const{id}=req.params;
-    const listing=await ListingSchema.findById(id).populate('requestArr');
+    const listing=await ListingSchema.findById(id).populate('requestArr').populate('author');
     console.log(listing);
     // listing.requestArr.map(async (user_id)=>{
     //     await listing.populate(user_id);
@@ -164,12 +164,12 @@ mongoose.connect(
     // console.log(currentUser);
   })
 
-  app.get('/listings/:id/edit',async(req,res)=>{
+  app.get('/listings/:id/edit',isLoggedIn,async(req,res)=>{
     const {id}=req.params;
     const listing=await ListingSchema.findById(id);
     res.render('listing/edit',{listing});
   })
-  app.post("/listings/:id/apply",async (req,res)=>{
+  app.post("/listings/:id/apply",isLoggedIn,async (req,res)=>{
     const {id}=req.params;
     const list=await ListingSchema.findById(id);
     list.requestArr.push(res.locals.currentUser._id);
@@ -177,7 +177,7 @@ mongoose.connect(
     res.redirect("/listings");
     // res.send(list);
   })
-  app.get("/listings/:id/accept/:userId",async (req,res)=>{
+  app.get("/listings/:id/accept/:userId",isLoggedIn,async (req,res)=>{
     const {id,userId}=req.params;
     const list=await ListingSchema.findById(id);
     const index=list.requestArr.indexOf(userId);
@@ -192,7 +192,7 @@ mongoose.connect(
     }
     res.redirect(`/listings/${id}`);
   })
-  app.get("/listings/:id/reject/:userId",async (req,res)=>{
+  app.get("/listings/:id/reject/:userId",isLoggedIn,async (req,res)=>{
     const {id,userId}=req.params;
     const list=await ListingSchema.findById(id);
     const index=list.requestArr.indexOf(userId);
@@ -200,7 +200,7 @@ mongoose.connect(
     await list.save();
     res.redirect(`/listings/${id}`);
   })
-  app.get('/user/:id/listings',async(req,res)=>{
+  app.get('/user/:id/listings',isLoggedIn,async(req,res)=>{
     const {id}=req.params;
     const user=await UserSchema.findById(id).populate({path:"listings"});
     res.render('users/allUserListings',{user});
@@ -216,13 +216,13 @@ mongoose.connect(
     });
   });
 
-  app.put('/listings/:id',async(req,res)=>{
+  app.put('/listings/:id',isLoggedIn,async(req,res)=>{
     const {id}=req.params;
     const listing =await ListingSchema.findByIdAndUpdate(id,req.body.listing);
     res.redirect(`/listings/${listing._id}`);
   })
 
-  app.delete('/listings/:id',async(req,res)=>{
+  app.delete('/listings/:id',isLoggedIn,async(req,res)=>{
     const {id}=req.params;
     const list=await ListingSchema.findByIdAndDelete(id);
     const user=await UserSchema.findById(res.locals.currentUser._id);
