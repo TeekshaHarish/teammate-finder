@@ -35,20 +35,25 @@ const ListingSchema=new Schema({
             ref:"UserSchema"
     },
     vacancy:{
-        type:Number,
-        required:true
+        type:Number
+        // required:true
     },
     requestArr:{
         type:[
             {type:Schema.Types.ObjectId,
-            ref:"User"}
+            ref:"UserSchema"}
         ]
     },
     acceptedArr:{
         type:[
             {type:Schema.Types.ObjectId,
-            ref:"User"}
+            ref:"UserSchema"}
         ]
+    },
+    isActive:{
+        type:Boolean,
+        required:true,
+        default:1
     }
 
 

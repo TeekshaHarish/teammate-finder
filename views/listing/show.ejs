@@ -12,6 +12,9 @@
         <!-- listing.skillSetHAve and listing.skillSetReq is an array -->
         <li class="list-group-item">Skill Set Req:<%= listing.skillSetReq %></li>
         <li class="list-group-item">Skill Set Have : <%= listing.skillSetHave %></li>
+        <li class="list-group-item">Vacancies : <%= listing.vacancy %></li>
+        <li class="list-group-item">Author: : <%= listing.author %></li>
+
         
         <li class="list-group-item">Desciption: <%= listing.description %></li>
         <% if(currentUser && currentUser.equals(listing.author)){ %>
@@ -32,6 +35,15 @@
           <button class="btn btn-success">Apply</button>
         </form>
       </ul>
+    </div>
+    <div>
+      <% listing.requestArr.map((user)=>{%>
+        <div>
+          <%= user.name %>
+          <a class="btn btn-success" href="/listings/<%=listing._id%>/accept/<%=user._id%>">Accept</a>
+          <a class="btn btn-danger" href="/listings/<%=listing._id%>/reject/<%=user._id%>">Reject</a>
+        </div>
+      <%}) %>
     </div>
   </div>
 </div>

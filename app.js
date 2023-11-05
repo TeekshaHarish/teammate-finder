@@ -154,7 +154,12 @@ mongoose.connect(
 
   app.get('/listings/:id',async(req,res)=>{
     const{id}=req.params;
-    const listing=await ListingSchema.findById(id);
+    const listing=await ListingSchema.findById(id).populate('requestArr');
+    console.log(listing);
+    // listing.requestArr.map(async (user_id)=>{
+    //     await listing.populate(user_id);
+    //   })
+    // console.log(listing);
     res.render('listing/show',{listing});
     // console.log(currentUser);
   })
@@ -163,6 +168,37 @@ mongoose.connect(
     const {id}=req.params;
     const listing=await ListingSchema.findById(id);
     res.render('listing/edit',{listing});
+  })
+  app.post("/listings/:id/apply",async (req,res)=>{
+    const {id}=req.params;
+    const list=await ListingSchema.findById(id);
+    list.requestArr.push(res.locals.currentUser._id);
+    await list.save();
+    res.redirect("/listings");
+    // res.send(list);
+  })
+  app.get("/listings/:id/accept/:userId",async (req,res)=>{
+    const {id,userId}=req.params;
+    const list=await ListingSchema.findById(id);
+    const index=list.requestArr.indexOf(userId);
+    if(list.isActive){
+      list.requestArr.splice(index,1);
+      list.acceptedArr.push(userId);
+      list.vacancy--;
+      if(list.vacancy==0){
+        list.isActive=0;
+      }
+      await list.save();
+    }
+    res.redirect(`/listings/${id}`);
+  })
+  app.get("/listings/:id/reject/:userId",async (req,res)=>{
+    const {id,userId}=req.params;
+    const list=await ListingSchema.findById(id);
+    const index=list.requestArr.indexOf(userId);
+    list.requestArr.splice(index,1);
+    await list.save();
+    res.redirect(`/listings/${id}`);
   })
   app.get('/user/:id/listings',async(req,res)=>{
     const {id}=req.params;
@@ -244,3 +280,7 @@ try{
       res.redirect('/')
     }
   ));
+
+  app.get("*",(req,res)=>{
+    res.send("error");
+  })
