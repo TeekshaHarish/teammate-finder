@@ -89,22 +89,32 @@ mongoose.connect(
     const obj={};
     if(category!="All")obj.category=category;
     if(skillSetReq!="NA") obj.skillSetReq=skillSetReq;
-    let listings=await ListingSchema.find(obj).populate('author');
-    // console.log(obj);
+    let listings=await ListingSchema.find().populate('author');
+    console.log(obj);
     // console.log(listings);
     if(obj.skillSetReq){
     listings=listings.filter((list)=>{
       let arr=list.skillSetReq;
+      // let count=0;
+      console.log("inside filter");
       for(let i=0;i<arr.length;i++){
         let flag=false;
+        
         for(let j=0;j<skillSetReq.length;j++){
           if(arr[i]==skillSetReq[j]) flag=true;
         }
+        // if(flag) count++;
         if(!flag) return false;
       }
+
+      // if(count>=arr.length())return true;
+      // else return false;
       return true;
     })
+
     }
+    // const newlistings=newListings;
+    console.log(listings);
     res.render('listing/index',{listings});
   })
 
